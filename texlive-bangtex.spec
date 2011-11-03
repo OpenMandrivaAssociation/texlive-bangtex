@@ -1,3 +1,9 @@
+# revision 15878
+# category Package
+# catalog-ctan /language/bangtex
+# catalog-date 2006-12-14 21:17:11 +0100
+# catalog-license lppl
+# catalog-version undef
 Name:		texlive-bangtex
 Version:	20061214
 Release:	1
@@ -67,6 +73,7 @@ with LaTeX, and MetaFont sources for fonts.
 %doc %{_texmfdistdir}/doc/latex/bangtex/manual.tex
 %doc %{_texmfdistdir}/doc/latex/bangtex/samplett.tex
 %doc %{_texmfdistdir}/doc/latex/bangtex/samptex.tex
+%doc %{_tlpkgobjdir}/*.tlpobj
 
 #-----------------------------------------------------------------------
 %prep
@@ -77,3 +84,5 @@ with LaTeX, and MetaFont sources for fonts.
 %install
 mkdir -p %{buildroot}%{_texmfdistdir}
 cp -fpar fonts tex doc %{buildroot}%{_texmfdistdir}
+mkdir -p %{buildroot}%{_tlpkgobjdir}
+cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}
