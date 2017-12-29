@@ -5,8 +5,8 @@
 # catalog-license lppl
 # catalog-version undef
 Name:		texlive-bangtex
-Version:	20061214
-Release:	10
+Version:	20170414
+Release:	1
 Summary:	Writing Bangla and Assamese with LaTeX
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/language/bangtex
