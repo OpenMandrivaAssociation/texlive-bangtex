@@ -1,18 +1,12 @@
-# revision 15878
-# category Package
-# catalog-ctan /language/bangtex
-# catalog-date 2006-12-14 21:17:11 +0100
-# catalog-license lppl
-# catalog-version undef
 Name:		texlive-bangtex
-Version:	20190228
+Version:	55475
 Release:	1
 Summary:	Writing Bangla and Assamese with LaTeX
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/language/bangtex
 License:	LPPL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/bangtex.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/bangtex.doc.tar.xz
+Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/bangtex.r55475.tar.xz
+Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/bangtex.doc.r55475.tar.xz
 BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(pre):	texlive-tlpkg
@@ -23,12 +17,12 @@ The bundle provides class files for writing Bangla and Assamese
 with LaTeX, and MetaFont sources for fonts.
 
 %post
-    %{_sbindir}/texlive.post
+%{_sbindir}/texlive.post
 
 %postun
-    if [ $1 -eq 0 ]; then
+if [ $1 -eq 0 ]; then
 	%{_sbindir}/texlive.post
-    fi
+fi
 
 #-----------------------------------------------------------------------
 %files
@@ -67,25 +61,10 @@ with LaTeX, and MetaFont sources for fonts.
 
 #-----------------------------------------------------------------------
 %prep
-%setup -c -a0 -a1
+%autosetup -p1 -c -a1
 
 %build
 
 %install
 mkdir -p %{buildroot}%{_texmfdistdir}
 cp -fpar fonts tex doc %{buildroot}%{_texmfdistdir}
-
-
-%changelog
-* Tue Jan 03 2012 Paulo Andrade <pcpa@mandriva.com.br> 20061214-2
-+ Revision: 749446
-- Rebuild to reduce used resources
-
-* Sat Nov 05 2011 Paulo Andrade <pcpa@mandriva.com.br> 20061214-1
-+ Revision: 717880
-- texlive-bangtex
-- texlive-bangtex
-- texlive-bangtex
-- texlive-bangtex
-- texlive-bangtex
-
