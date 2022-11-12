@@ -5,8 +5,8 @@ Summary:	Writing Bangla and Assamese with LaTeX
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/language/bangtex
 License:	LPPL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/bangtex.r55475.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/bangtex.doc.r55475.tar.xz
+Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/bangtex.r%{version}.tar.xz
+Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/bangtex.doc.r%{version}.tar.xz
 BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(pre):	texlive-tlpkg
