@@ -3,7 +3,7 @@ Version:	55475
 Release:	2
 Summary:	Writing Bangla and Assamese with LaTeX
 Group:		Publishing
-URL:		http://www.ctan.org/tex-archive/language/bangtex
+URL:		https://www.ctan.org/tex-archive/language/bangtex
 License:	LPPL
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/bangtex.r%{version}.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/bangtex.doc.r%{version}.tar.xz
