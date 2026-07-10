@@ -11,12 +11,84 @@ License:	lppl
 Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/bangtex.r%{tl_revision}.tar.xz
 Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/bangtex.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildSystem:	texlive
-BuildRequires:	texlive-tlpkg
-%texlive_base_requires
+Requires(pre):	texlive-tlpkg
 Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
 The bundle provides class files for writing Bangla and Assamese with
 LaTeX, and Metafont sources for fonts.
 
+%prep
+%setup -q -c -a1
+rm -rf tlpkg
+if [ -d RELOC ]; then
+	cp -a RELOC/. .
+	rm -rf RELOC
+fi
+
+%build
+
+%install
+mkdir -p %{buildroot}%{_datadir}/texmf-dist
+# Flat tlnet layout: tex/ doc/ source/ fonts/ ... -> texmf-dist/
+if [ -d texmf-dist ]; then
+	cp -a texmf-dist/. %{buildroot}%{_datadir}/texmf-dist/
+elif [ -d texmf ]; then
+	mkdir -p %{buildroot}%{_datadir}/texmf
+	cp -a texmf/. %{buildroot}%{_datadir}/texmf/
+else
+	for d in * .[!.]* ..?*; do
+		[ -e "$d" ] || continue
+		case "$d" in tlpkg|RELOC) continue ;; esac
+		cp -a "$d" %{buildroot}%{_datadir}/texmf-dist/
+	done
+fi
+rm -rf %{buildroot}%{_datadir}/texmf-dist/tlpkg
+
+%files
+%dir %{_datadir}/texmf-dist
+%dir %{_datadir}/texmf-dist/doc
+%dir %{_datadir}/texmf-dist/fonts
+%dir %{_datadir}/texmf-dist/tex
+%dir %{_datadir}/texmf-dist/doc/latex
+%dir %{_datadir}/texmf-dist/fonts/source
+%dir %{_datadir}/texmf-dist/fonts/tfm
+%dir %{_datadir}/texmf-dist/tex/latex
+%dir %{_datadir}/texmf-dist/doc/latex/bangtex
+%dir %{_datadir}/texmf-dist/fonts/source/public
+%dir %{_datadir}/texmf-dist/fonts/tfm/public
+%dir %{_datadir}/texmf-dist/tex/latex/bangtex
+%dir %{_datadir}/texmf-dist/fonts/source/public/bangtex
+%dir %{_datadir}/texmf-dist/fonts/tfm/public/bangtex
+%doc %{_datadir}/texmf-dist/doc/latex/bangtex/README.bangtex
+%doc %{_datadir}/texmf-dist/doc/latex/bangtex/manual.tex
+%doc %{_datadir}/texmf-dist/doc/latex/bangtex/samplett.tex
+%doc %{_datadir}/texmf-dist/doc/latex/bangtex/samptex.tex
+%doc %{_datadir}/texmf-dist/fonts/source/public/bangtex/bang10.mf
+%doc %{_datadir}/texmf-dist/fonts/source/public/bangtex/bangbase.mf
+%doc %{_datadir}/texmf-dist/fonts/source/public/bangtex/bangconso.mf
+%doc %{_datadir}/texmf-dist/fonts/source/public/bangtex/bangdefs.mf
+%doc %{_datadir}/texmf-dist/fonts/source/public/bangtex/bangfala.mf
+%doc %{_datadir}/texmf-dist/fonts/source/public/bangtex/banghalf.mf
+%doc %{_datadir}/texmf-dist/fonts/source/public/bangtex/bangjuk.mf
+%doc %{_datadir}/texmf-dist/fonts/source/public/bangtex/bangkaar.mf
+%doc %{_datadir}/texmf-dist/fonts/source/public/bangtex/banglig.mf
+%doc %{_datadir}/texmf-dist/fonts/source/public/bangtex/bangmac.mf
+%doc %{_datadir}/texmf-dist/fonts/source/public/bangtex/bangnum.mf
+%doc %{_datadir}/texmf-dist/fonts/source/public/bangtex/bangpunc.mf
+%doc %{_datadir}/texmf-dist/fonts/source/public/bangtex/bangsl10.mf
+%doc %{_datadir}/texmf-dist/fonts/source/public/bangtex/bangvow.mf
+%doc %{_datadir}/texmf-dist/fonts/source/public/bangtex/bangwd10.mf
+%{_datadir}/texmf-dist/fonts/tfm/public/bangtex/bang10.tfm
+%{_datadir}/texmf-dist/fonts/tfm/public/bangtex/bangsl10.tfm
+%{_datadir}/texmf-dist/fonts/tfm/public/bangtex/bangwd10.tfm
+%{_datadir}/texmf-dist/tex/latex/bangtex/bangfont.tex
+%{_datadir}/texmf-dist/tex/latex/bangtex/barticle.cls
+%{_datadir}/texmf-dist/tex/latex/bangtex/bbk10.clo
+%{_datadir}/texmf-dist/tex/latex/bangtex/bbk11.clo
+%{_datadir}/texmf-dist/tex/latex/bangtex/bbk12.clo
+%{_datadir}/texmf-dist/tex/latex/bangtex/bbook.cls
+%{_datadir}/texmf-dist/tex/latex/bangtex/bletter.cls
+%{_datadir}/texmf-dist/tex/latex/bangtex/bsize10.clo
+%{_datadir}/texmf-dist/tex/latex/bangtex/bsize11.clo
+%{_datadir}/texmf-dist/tex/latex/bangtex/bsize12.clo
